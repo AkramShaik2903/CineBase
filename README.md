@@ -222,30 +222,17 @@ docker compose up --build
 ## Swagger UI
 
 
+<img width="1886" height="857" alt="Screenshot 2026-07-21 141514" src="https://github.com/user-attachments/assets/8dacc508-891c-451c-8a9e-1de20f05ddb9" />
+<img width="1332" height="492" alt="Screenshot 2026-07-21 141603" src="https://github.com/user-attachments/assets/636b8867-410e-479a-80cc-d3427fa867b6" />
+<img width="1247" height="826" alt="Screenshot 2026-07-21 141618" src="https://github.com/user-attachments/assets/21743706-9e9f-401d-ab5e-c4f50fec0c45" />
 
-```
-<img width="1886" height="857" alt="Screenshot 2026-07-21 141514" src="https://github.com/user-attachments/assets/65b94724-c6db-4bb6-9236-a24b20588bf2" />
-
-<img width="1332" height="492" alt="Screenshot 2026-07-21 141603" src="https://github.com/user-attachments/assets/80f19f2b-1826-4e4b-86bf-635e98456c93" />
-
-<img width="1247" height="826" alt="Screenshot 2026-07-21 141618" src="https://github.com/user-attachments/assets/0278776c-6f3f-4916-a98d-5b05b5336549" />
-
-
-
-```
-
----
 
 ## Docker Containers
 
 
 
-```
-<img width="1565" height="762" alt="Screenshot 2026-07-21 141720" src="https://github.com/user-attachments/assets/7a8d49e4-443b-4620-8f0d-e2be315b5b06" />
+<img width="1565" height="762" alt="Screenshot 2026-07-21 141720" src="https://github.com/user-attachments/assets/58cc11df-792e-49bb-b2d9-23f39770e1d5" />
 
-```
-
----
 
 # 📖 API Modules
 
