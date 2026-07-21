@@ -1,12 +1,14 @@
 # 🎬 CineBase
 
-**CineBase** is a secure and scalable Movie Management REST API built with **Spring Boot**. It provides user authentication with JWT, role-based authorization, movie management, reviews, and watchlists while following a clean layered architecture.
+CineBase is a secure and scalable **Movie Management REST API** built with **Spring Boot**. It provides JWT-based authentication, role-based authorization, movie management, user reviews, and personalized movie lists while following a clean layered architecture.
+
+The project was built to practice backend development using modern Java technologies and REST API design principles.
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
-### Authentication & Authorization
+## Authentication & Authorization
 
 * User Registration
 * User Login
@@ -15,33 +17,41 @@
 * Password Encryption using BCrypt
 * Stateless Authentication with Spring Security
 
-### Movie Management
+## Movie Management
 
-* Add Movies (Admin)
-* Update Movies (Admin)
-* Delete Movies (Admin)
-* Get All Movies
-* Get Movie by ID
-* Filter Movies by Genre, Language, Rating, etc.
+* Add, Update and Delete Movies (Admin)
+* Retrieve All Movies
+* Get Movie Details by ID
+* Search Movies by Title
+* Filter Movies by Genre
 
-### Reviews
+## Reviews
 
-* Add Review
-* Update Review
-* Delete Review
+* Add Reviews
+* Update Reviews
+* Delete Reviews
 * View Reviews for a Movie
 
-### Watchlist
+## Personal Movie Lists
 
-* Add Movie to Watchlist
-* Remove Movie from Watchlist
-* View User Watchlist
+Users can organize movies into different categories:
 
-### API Documentation
+* Watchlist
+* Watch History
+* Favorites
 
-* Swagger / OpenAPI Integration
+Supported operations:
 
-### Containerization
+* Add Movie
+* Remove Movie
+* View Personal Lists
+
+## API Documentation
+
+* Interactive Swagger UI
+* OpenAPI Specification
+
+## Containerization
 
 * Docker Support
 * Docker Compose Support
@@ -50,17 +60,17 @@
 
 # 🛠️ Tech Stack
 
-| Category         | Technologies                |
-| ---------------- | --------------------------- |
-| Language         | Java 21                     |
-| Framework        | Spring Boot                 |
-| Security         | Spring Security, JWT        |
-| ORM              | Spring Data JPA (Hibernate) |
-| Database         | MySQL                       |
-| Build Tool       | Maven                       |
-| Documentation    | Swagger / OpenAPI           |
-| Containerization | Docker, Docker Compose      |
-| Version Control  | Git & GitHub                |
+| Category          | Technologies                |
+| ----------------- | --------------------------- |
+| Language          | Java 21                     |
+| Framework         | Spring Boot                 |
+| Security          | Spring Security, JWT        |
+| ORM               | Spring Data JPA (Hibernate) |
+| Database          | MySQL                       |
+| Build Tool        | Maven                       |
+| API Documentation | Swagger / OpenAPI           |
+| Containerization  | Docker, Docker Compose      |
+| Version Control   | Git & GitHub                |
 
 ---
 
@@ -75,9 +85,12 @@ src
 ├── repository
 ├── entity
 ├── dto
+│   ├── request
+│   └── response
 ├── config
 ├── security
 ├── exception
+├── enums
 └── util
 ```
 
@@ -87,53 +100,63 @@ src
 
 ```mermaid
 graph TD
-    A[Client<br/>Postman / Swagger UI] --> B[Spring Security<br/>JWT Authentication Filter]
-    B --> C[REST Controllers]
-    C --> D[Service Layer]
-    D --> E[Repository Layer<br/>Spring Data JPA]
-    E --> F[(MySQL Database)]
+
+A[Client<br/>Postman / Swagger UI]
+--> B[Spring Security<br/>JWT Authentication Filter]
+
+B --> C[REST Controllers]
+
+C --> D[Service Layer]
+
+D --> E[Repository Layer<br/>Spring Data JPA]
+
+E --> F[(MySQL Database)]
 ```
 
-The project follows a **Layered Architecture**, where each layer has a specific responsibility:
+The project follows a **Layered Architecture**, where each layer has a single responsibility.
 
-* **Controller Layer** – Handles incoming HTTP requests and returns responses.
-* **Service Layer** – Contains the business logic.
-* **Repository Layer** – Communicates with the database using Spring Data JPA.
-* **Security Layer** – Validates JWT tokens and authorizes users.
-* **Database Layer** – Stores application data in MySQL.
+| Layer      | Responsibility                                     |
+| ---------- | -------------------------------------------------- |
+| Controller | Receives HTTP requests and returns responses       |
+| Security   | Authenticates users and validates JWT tokens       |
+| Service    | Implements business logic                          |
+| Repository | Performs database operations using Spring Data JPA |
+| Database   | Stores application data in MySQL                   |
 
 ---
 
 # 🗃️ Database Design
 
-> **ER Diagram**
+The following Entity Relationship Diagram illustrates the database schema used by CineBase.
 
-<img width="486" height="370" alt="er-diagram" src="https://github.com/user-attachments/assets/1daa279e-1c7d-4367-a3d0-18a5f3d565d4" />
+<p align="center">
+<img width="486" height="370" alt="er-diagram" src="https://github.com/user-attachments/assets/ed01e200-7269-4c66-9ce4-c4279ef46b2b" />
 
+</p>
 
 ---
 
 # 🔐 Authentication Flow
 
-1. User logs in using email and password.
-2. Credentials are authenticated by Spring Security.
-3. A JWT token is generated.
-4. The client sends the JWT token with every protected request.
-5. The JWT filter validates the token before allowing access to secured APIs.
+1. User logs in with email and password.
+2. Spring Security authenticates the credentials.
+3. A JWT token is generated upon successful authentication.
+4. The client includes the JWT token in subsequent requests.
+5. The JWT Authentication Filter validates the token before granting access to protected endpoints.
 
 ---
 
 # 📦 API Documentation
 
-Once the application is running:
+After starting the application, Swagger UI can be accessed at:
 
-```
+```text
 http://localhost:8080/swagger-ui/index.html
 ```
 
-OpenAPI specification:
+OpenAPI JSON Specification:
 
-```
+```text
 http://localhost:8080/v3/api-docs
 ```
 
@@ -142,6 +165,8 @@ http://localhost:8080/v3/api-docs
 # ⚙️ Getting Started
 
 ## Prerequisites
+
+Before running the project, ensure you have:
 
 * Java 21
 * Maven
@@ -153,18 +178,16 @@ http://localhost:8080/v3/api-docs
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/cinebase.git
+git clone https://github.com/AkramShaik2903/cinebase.git
 
 cd cinebase
 ```
 
 ---
 
-## Configure Database
+## Configure the Database
 
 Update your environment variables or `application.properties`.
-
-Example:
 
 ```properties
 SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/cinebase
@@ -176,7 +199,9 @@ JWT_SECRET=your-secret-key
 
 ---
 
-## Run Using Maven
+## Build and Run
+
+### Using Maven
 
 ```bash
 mvn clean install
@@ -184,9 +209,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
----
-
-## Run Using Docker
+### Using Docker
 
 ```bash
 docker compose up --build
@@ -196,48 +219,62 @@ docker compose up --build
 
 # 📸 Screenshots
 
-### Swagger UI
+## Swagger UI
 
-*Add screenshot here.*
 
-```
-docs/images/swagger-ui.png
-```
-
----
-
-### Docker Containers
-
-*Add Docker screenshot here.*
 
 ```
-docs/images/docker.png
+<img width="1886" height="857" alt="Screenshot 2026-07-21 141514" src="https://github.com/user-attachments/assets/65b94724-c6db-4bb6-9236-a24b20588bf2" />
+
+<img width="1332" height="492" alt="Screenshot 2026-07-21 141603" src="https://github.com/user-attachments/assets/80f19f2b-1826-4e4b-86bf-635e98456c93" />
+
+<img width="1247" height="826" alt="Screenshot 2026-07-21 141618" src="https://github.com/user-attachments/assets/0278776c-6f3f-4916-a98d-5b05b5336549" />
+
+
+
 ```
 
 ---
 
-# 📖 API Endpoints
+## Docker Containers
 
-| Module         | Endpoint            |
-| -------------- | ------------------- |
-| Authentication | `/api/auth/**`      |
-| Movies         | `/api/movies/**`    |
-| Reviews        | `/api/reviews/**`   |
-| Watchlist      | `/api/watchlist/**` |
+
+
+```
+<img width="1565" height="762" alt="Screenshot 2026-07-21 141720" src="https://github.com/user-attachments/assets/7a8d49e4-443b-4620-8f0d-e2be315b5b06" />
+
+```
+
+---
+
+# 📖 API Modules
+
+| Module         | Base Endpoint              |
+| -------------- | -------------------------- |
+| Authentication | `/api/auth/**`             |
+| Movies         | `/api/movies/**`           |
+| Reviews        | `/api/reviews/**`          |
+| Watchlist      | `/api/me/watchlist/**`     |
+| Watch History  | `/api/me/watch-history/**` |
+| Favorites      | `/api/me/favorites/**`     |
 
 ---
 
 # 📌 Future Improvements
 
-* Search with pagination
-* Movie recommendations
-* Favorites
-* Email verification
-* Password reset
-* Image upload
-* Caching with Redis
+Some features planned for future releases:
+
+* Movie Recommendation System
+* Director, Cast and Production Company Management
+* OTT Platform Information
+* Email Verification
+* Forgot Password / Password Reset
+* Poster & Trailer Upload
+* Redis Caching
+* Pagination & Sorting
 * CI/CD Pipeline
-* Microservices architecture
+* Unit & Integration Testing
+* Microservices Architecture
 
 ---
 
@@ -245,22 +282,22 @@ docs/images/docker.png
 
 **Akram Shaik**
 
-Backend Developer | Java | Spring Boot | REST APIs
+Java Backend Developer | Spring Boot | REST APIs 
 
-GitHub:
-
-```
-https://github.com/<your-username>
-```
-
-LinkedIn:
+**GitHub**
 
 ```
-https://linkedin.com/in/<your-profile>
+https://github.com/AkramShaik2903
+```
+
+**LinkedIn**
+
+```
+https://linkedin.com/in/akram-shaik-323bab246/
 ```
 
 ---
 
 # 📄 License
 
-This project is developed for learning, portfolio, and educational purposes.
+This project is intended for learning, portfolio, and educational purposes.
