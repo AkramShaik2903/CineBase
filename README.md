@@ -111,7 +111,7 @@ The project follows a **Layered Architecture**, where each layer has a specific 
 *Add the ER diagram image here.*
 
 ```text
-docs/images/er-diagram.png
+C:\Users\akram\Desktop\CineBase\er-diagram.png
 ```
 
 ---
