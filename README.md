@@ -108,11 +108,8 @@ The project follows a **Layered Architecture**, where each layer has a specific 
 
 > **ER Diagram**
 
-*Add the ER diagram image here.*
+<img width="486" height="370" alt="er-diagram" src="https://github.com/user-attachments/assets/1daa279e-1c7d-4367-a3d0-18a5f3d565d4" />
 
-```text
-C:\Users\akram\Desktop\CineBase\er-diagram.png
-```
 
 ---
 
