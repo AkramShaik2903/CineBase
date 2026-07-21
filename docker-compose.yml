@@ -1,0 +1,52 @@
+
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: cinebase-mysql
+    restart: unless-stopped
+
+    environment:
+      MYSQL_DATABASE: cinebase
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: cinebase
+      MYSQL_PASSWORD: cinebase123
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: cinebase-app
+    restart: unless-stopped
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cinebase
+      SPRING_DATASOURCE_USERNAME: cinebase
+      SPRING_DATASOURCE_PASSWORD: cinebase123
+      JWT_SECRET: your-super-secret-jwt-key
+
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_PROFILES_ACTIVE: docker
+
+volumes:
+  mysql_data:
