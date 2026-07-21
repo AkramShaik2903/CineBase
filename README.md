@@ -5,6 +5,8 @@ CineBase is a secure and scalable **Movie Management REST API** built with **Spr
 The project was built to practice backend development using modern Java technologies and REST API design principles.
 
 ---
+## Live API Documentation
+https://cinebase-production.up.railway.app/swagger-ui/index.html
 
 # 🚀 Features
 
